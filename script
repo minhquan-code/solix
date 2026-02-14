@@ -23,7 +23,7 @@ local GameList = {
 	["6035872082"] = { id = "3bb7969a9ecb9e317b0a24681327c2e2", keyless = true }, -- Rivals
 	["245662005"]  = { id = "21ad7f491e4658e9dc9529a60c887c6e", keyless = true }, -- Jailbreak
 	["7018190066"] = { id = "98f5c64a0a9ecca29517078597bbcbdb", keyless = true }, -- Dead Rails
-	["7074860883"] = { id = "0c8fdf9bb25a6a7071731b72a90e3c69", keyless = true }, -- Arise Crossover
+	["7074860883"] = { id = "0c8fdf9bb25a6a7071731b72a90e3c69", keyless = false }, -- Arise Crossover
 	["7436755782"] = { id = "e4ea33e9eaf0ae943d59ea98f2444ebe", keyless = true }, -- Grow a Garden
 	["7326934954"] = { id = "00e140acb477c5ecde501c1d448df6f9", keyless = true }, -- 99 Nights in the Forest
 	["8316902627"] = { id = "641e8d02ffba666d731614a32c08eacf", keyless = true }, -- Plants vs Brainrot
@@ -41,7 +41,7 @@ local game_id = tostring(game.GameId)
 local game_config = GameList[game_id]
 
 if not game_config then
-	plr:Kick("Game dell suport")
+	plr:Kick("This game is not supported.")
 	return
 end
 
@@ -64,11 +64,13 @@ if CoreGui:FindFirstChild("Solix Notification") then
 end
 
 local Config = {
-	File = "12345",
-	Title = "SolixHub(việt hoá) Free 15+ Games",
-	Description = "free solix hub",
-	Youtube = "https://www.youtube.com/channel/UC5fiIFO75hTvm5WBCHbFalw",
-  Key:12345 = "12345",
+	File = "solixhub/savedkey.txt",
+	Title = "SolixHub Free 15+ Games",
+	Description = "Lifetime key access is available for a one-time payment of $15 via solixhub.com",
+	Linkvertise = "https://ads.luarmor.net/get_key?for=Solixhub_Free_KeySystem-OWlLHDMCHADk",
+	Shrink = "https://ads.luarmor.net/get_key?for=Solix_Free_Keysystems-pqJCGTqnTsng",
+	Discord = "https://discord.gg/solixhub",
+	Shop = "https://solixhub.com/",
 }
 
 local Theme = {
@@ -82,7 +84,21 @@ local Theme = {
 	Element = Color3.fromRGB(36, 32, 39),
 	Success = Color3.fromRGB(60, 255, 60),
 	Error = Color3.fromRGB(255, 60, 60)
+}
 
+local error_messages = {
+	KEY_EXPIRED = "Your key has expired. Please renew it to continue.",
+	KEY_BANNED = "This key has been blacklisted. Contact support for assistance.",
+	KEY_HWID_LOCKED = "This key is linked to a different HWID. Please reset it via our bot.",
+	KEY_INCORRECT = "The provided key is incorrect or no longer valid.",
+	KEY_INVALID = "Invalid key format. Please check your key and try again.",
+	SCRIPT_ID_INCORRECT = "The provided script ID does not exist or has been removed.",
+	SCRIPT_ID_INVALID = "This script has been deleted by its owner.",
+	INVALID_EXECUTOR = "Invalid HWID header detected. Your executor may not be supported.",
+	SECURITY_ERROR = "Security validation failed (Cloudflare check). Please retry.",
+	TIME_ERROR = "Invalid client time detected. Please sync your system clock.",
+	UNKNOWN_ERROR = "An unknown error occurred. Please contact support."
+}
 
 local function DeleteFile(v)
 	if isfile(v) then
